@@ -1,0 +1,233 @@
+#contact {
+  background: url("./Images//bg.png");
+  background-size: cover;
+  padding: 80px;
+  padding-bottom: none;
+}
+#contact:before {
+  content: "";
+  position: absolute;
+  top: 250px;
+  left: 0px;
+  width: 40px;
+  height: 100px;
+  background: #fa215e;
+  z-index: 1;
+  transition: 1s;
+}
+#contact:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 80px;
+  width: 250px;
+  height: 80px;
+  background: #aeff0f;
+  z-index: 1;
+  transition: 1s;
+}
+#contact .title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+#contact .titleText {
+  color: #111;
+  font-size: 2em;
+  font-weight: 300;
+}
+#contact .titleText span {
+  color: #ff0157;
+  font-weight: 700;
+  font-size: 1.5em;
+}
+#contact .contactForm {
+  padding: 50px 50px;
+  background: #fff;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin-top: 30px;
+}
+#contact .contactForm h3 {
+  color: #111;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+#contact .contactForm .inputBx {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+#contact .contactForm .inputBx input,
+#contact .contactForm .inputBx textarea {
+  width: 100%;
+  border: 1px solid #555;
+  padding: 10px;
+  color: #111;
+  outline: none;
+  font-size: 16px;
+  resize: none;
+  font-weight: 300;
+}
+#contact .contactForm .inputBx input[type="submit"],
+#contact .contactForm .inputBx input[type="cancel"] {
+  font-size: 1em;
+  color: #fff;
+  background: #ff0157;
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: 0.5s;
+  max-width: 100px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+#contact .contactForm .inputBx input[type="submit"] {
+  background: #677eff;
+}
+#contact .contactForm .inputBx input[type="cancel"] {
+  background: #e73e49;
+}
+#contact .contactForm .inputBx input[type="submit"]:hover,
+#contact .contactForm .inputBx input[type="cancel"]:hover {
+  letter-spacing: 4px;
+  max-width: 120px;
+}
+
+.modal-content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-pheader {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 15px;
+  white-space: nowrap;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 12px;
+  line-height: 33px;
+}
+
+.action[data-v-2cd4fa19],
+.action input[data-v-2cd4fa19] {
+  position: relative;
+}
+
+.action input[data-v-2cd4fa19] {
+  padding-left: 35px;
+  box-shadow: 0 0 3px 1px hsla(0, 0%, 50.2%, 0.12157);
+  border-radius: 24px;
+  font-size: 12px;
+}
+
+.action[data-v-2cd4fa19],
+.action input[data-v-2cd4fa19] {
+  position: relative;
+}
+
+input[data-v-2cd4fa19] {
+  background: transparent;
+  border: unset;
+  box-shadow: unset;
+}
+
+.action button {
+  background: #ff8a00;
+  border-radius: 6px;
+  color: #fff;
+  padding: 0 12px;
+  width: 30%;
+  font-size: 12px;
+}
+
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+.create-place .form[data-v-2cd4fa19] {
+  background: hsla(0, 0%, 60.8%, 0.1);
+  margin-bottom: 12px;
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+
+.create-place .service-item[data-v-2cd4fa19] {
+  border: 1px dashed #979797;
+  background: #f3f2f2;
+  width: 33%;
+}
+
+.create-place .service-item span[data-v-2cd4fa19] {
+  padding-top: 13px;
+  margin-bottom: 8px;
+}
+
+.create-place .service-item b[data-v-2cd4fa19] {
+  font-size: 13px;
+}
+
+.create-place .service-item b a[data-v-2cd4fa19] {
+  color: #000;
+}
+
+.create-place .btn-done[data-v-2cd4fa19] {
+  background: #fff;
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+.create-place .btn-done button[data-v-2cd4fa19] {
+  font-size: 15px;
+  border-radius: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  text-align: center;
+  color: #fff;
+  margin: 0 auto;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f60),
+    color-stop(#ff7000),
+    color-stop(#ff7900),
+    color-stop(#ff8200),
+    to(#ff8a00)
+  );
+  background-image: linear-gradient(
+    90deg,
+    #f60,
+    #ff7000,
+    #ff7900,
+    #ff8200,
+    #ff8a00
+  );
+  display: block;
+}
+
+button[data-v-2cd4fa19] {
+  background: transparent;
+  border: unset;
+  box-shadow: unset;
+}
