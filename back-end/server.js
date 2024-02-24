@@ -1,14 +1,6 @@
 require('dotenv').config();
-const db = require('./database');
-
-const users = require('./Controllers/UserController');
-const places = require('./Controllers/PlaceController');
-const categories = require('./Controllers/CategoryController');
-const posts = require('./Controllers/PostController');
-const admin = require('./Controllers/AdminController');
 
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require("cors");
 
@@ -25,12 +17,15 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.listen(process.env.PORT, function() {
-    console.log('Server Started');
-});
+//mongo
+const mongoLib = require('./libs/mongodb');
+mongoLib.init();
 
-app.use('/user', users);
-app.use('/place', places);
-app.use('/category',categories);
-app.use('/post',posts);
-app.use('/admin',admin);
+const IndexRouter = require("./routes/index");
+IndexRouter.configRoute(app);
+
+app.listen(process.env.HTTP_PORT, process.env.HTTP_HOST, function () {
+    console.log(
+        `Server listen on port: ${process.env.HTTP_HOST} host:${process.env.HTTP_PORT}`
+    );
+});
