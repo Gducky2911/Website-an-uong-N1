@@ -1,9 +1,0 @@
-﻿tbody tr:hover{
-    background-color: orange;
-    color: white;
-}
-
-.selected{
-    background-color: rgb(223, 150, 14);
-    color: white;
-}
