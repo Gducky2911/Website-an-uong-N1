@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -7,14 +7,14 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
-  const { data, status } = useSession()
-  const router = useRouter()
+  const { data, status } = useSession();
+  const router = useRouter();
 
-  if (status === 'loading') {
-    return <p>Loading...</p>
+  if (status === "loading") {
+    return <p>Loading...</p>;
   }
-  if (status === 'authenticated') {
-    router.push("/")
+  if (status === "authenticated") {
+    router.push("/");
   }
 
   return (
@@ -26,20 +26,17 @@ const LoginPage = () => {
         <div className="p-10 flex flex-col gap-8 md:w-1/2">
           <h1 className="font-bold text-xl xl:text-3xl">Xin chào</h1>
           <p>Đăng nhập vào tài khoản của bạn hoặc tạo tài khoản mới</p>
-          <button className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
-            onClick={() => signIn("github")}
-          > 
-            {/* <Image
-              src="/google.png"
-              alt=""
-              width={20}
-              height={20}
-              className="object-contain"
-            /> */}
-            <span>Đăng nhập bằng Github</span>
+          <button
+            className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
+            onClick={() => signIn("facebook")}
+          >
+            <span>Đăng nhập bằng Facebook</span>
           </button>
           <p className="text-sm">
-            Có lỗi xảy ra?<Link className="underline" href="/">Liên hệ chúng tôi</Link>
+            Có lỗi xảy ra?
+            <Link className="underline" href="/">
+              Liên hệ chúng tôi
+            </Link>
           </p>
         </div>
       </div>
