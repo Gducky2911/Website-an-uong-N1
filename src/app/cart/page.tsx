@@ -29,8 +29,8 @@ const CartPage = () => {
             userEmail: session.user.email,
           }),
         });
-        const data =await res.json()
-        router.push(`/pay/${data.id}`)
+        const data = await res.json();
+        router.push(`/pay/${data.id}`);
       } catch (err) {
         console.log(err);
       }

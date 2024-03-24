@@ -38,7 +38,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
         <p>{singleProduct.desc}</p>
         <Price product={singleProduct} />
       </div>
-      <DeleteButton id={singleProduct.id}/>
+      <DeleteButton id={singleProduct.id} />
     </div>
   );
 };

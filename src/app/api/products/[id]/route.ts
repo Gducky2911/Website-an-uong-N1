@@ -30,7 +30,7 @@ export const DELETE = async (
   { params }: { params: { id: string } }
 ) => {
   const { id } = params;
-  const session = await getAuthSession()
+  const session = await getAuthSession();
 
   if (session?.user.isAdmin) {
     try {
@@ -40,7 +40,9 @@ export const DELETE = async (
         },
       });
 
-      return new NextResponse(JSON.stringify("Product has been deleted!"), { status: 200 });
+      return new NextResponse(JSON.stringify("Product has been deleted!"), {
+        status: 200,
+      });
     } catch (err) {
       console.log(err);
       return new NextResponse(
@@ -49,8 +51,7 @@ export const DELETE = async (
       );
     }
   }
-  return new NextResponse(
-    JSON.stringify({ message: "You are not allowed!" }),
-    { status: 403 }
-  );
+  return new NextResponse(JSON.stringify({ message: "You are not allowed!" }), {
+    status: 403,
+  });
 };

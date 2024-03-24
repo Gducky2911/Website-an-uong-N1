@@ -33,12 +33,12 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     makeRequest();
   }, [id]);
 
-  const options:StripeElementsOptions={
+  const options: StripeElementsOptions = {
     clientSecret,
-    appearance:{
-      theme:"stripe"
-    }
-  }
+    appearance: {
+      theme: "stripe",
+    },
+  };
 
   return (
     <div>
