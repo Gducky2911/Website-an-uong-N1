@@ -13,10 +13,6 @@ const UserLinks = () => {
       {data.status === "authenticated" ? (
         <div style={{ display: "flex", alignItems: "center" }}>
           <span style={{ marginRight: "10px" }}>{data.data.user.name}</span>
-          <img
-            src={logo}
-            style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-          />
           <Link
             href="/orders"
             style={{

@@ -2,6 +2,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions, User, getServerSession } from "next-auth";
 import { prisma } from "./connect";
 import Facebook from "next-auth/providers/facebook";
+import Github from "next-auth/providers/github";
 
 declare module "next-auth" {
     interface Session {
@@ -26,6 +27,10 @@ export const authOptions: NextAuthOptions = {
         Facebook({
             clientId: process.env.FACEBOOK_CLIENT_ID!,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+        }),
+        Github({
+            clientId: process.env.GITHUB_ID!,
+            clientSecret: process.env.GITHUB_SECRET!,
         })
     ],
     callbacks: {

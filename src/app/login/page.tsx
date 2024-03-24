@@ -28,22 +28,11 @@ const LoginPage = () => {
           <p>Đăng nhập vào tài khoản của bạn hoặc tạo tài khoản mới</p>
           <button
             className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
-            onClick={() => signIn("facebook")}
+            onClick={() => signIn("github")}
+            // onClick={() => signIn("facebook")}
           >
-            <span>Đăng nhập bằng Facebook</span>
+            <span>Đăng nhập</span>
           </button>
-          {/* <button className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
-            onClick={() => signIn("facebook")}
-          > 
-            <Image
-              src="/facebook.png"
-              alt=""
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <span>Đăng nhập bằng Facebook</span>
-          </button> */}
           <p className="text-sm">
             Có lỗi xảy ra?
             <Link className="underline" href="/">
