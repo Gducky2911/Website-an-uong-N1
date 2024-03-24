@@ -64,14 +64,19 @@ const AddPage = () => {
   };
 
   const upload = async () => {
-    const data = new FormData();
-    data.append("file", file!);
-    data.append("upload_preset", "restaurant");
-
-    const res = await fetch("https://api.cloudinary.com/v1_1/dwglccfqv/image", {
+    const formData = new FormData();
+    formData.append("file", file!);
+    formData.append(
+      "fileName",
+      (Math.random() * 111111111111111111111111).toString()
+    );
+    const res = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
-      body: data,
+      body: formData,
+      headers: {
+        Authorization:
+          "Basic cHJpdmF0ZV9XVEJvUWJseXI2L1IyTllNUGVGNVhNNmZwVE09Og==",
+      },
     });
 
     const resData = await res.json();
