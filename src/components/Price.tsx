@@ -23,12 +23,12 @@ const Price = ({ product }: { product: ProductType }) => {
             }),
             quantity: quantity
         })
-        // toast.success("The product added to the cart!")
+        toast.success("The product added to the cart!")
     }
 
     useEffect(() => {
         setTotal(
-            quantity * (product.options?.length ? product.price + product.options[selected].additionalPrice : product.price)
+            quantity * product.price
         )
     }, [quantity, selected, product])
 

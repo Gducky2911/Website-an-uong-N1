@@ -38,10 +38,12 @@ export const POST = async (req: NextRequest) => {
     if (session) {
         try {
             const body = await req.json();
-            const order = await prisma.order.create({
-                data: body,
-            });
-            return new NextResponse(JSON.stringify(order), { status: 201 });
+            if (session.user.isAdmin) {
+                const order = await prisma.order.create({
+                    data: body,
+                });
+                return new NextResponse(JSON.stringify(order), { status: 201 });
+            }
         } catch (err) {
             console.log(err);
             return new NextResponse(
