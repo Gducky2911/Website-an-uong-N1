@@ -38,7 +38,7 @@ export const POST = async (req: NextRequest) => {
   if (session) {
     try {
       const body = await req.json();
-      if (session.user.isAdmin) {
+      if (session.user) {
         const order = await prisma.order.create({
           data: body,
         });
