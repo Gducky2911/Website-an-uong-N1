@@ -21,7 +21,7 @@ const Featured = async () => {
         {featuredProducts.map((item) => (
           <div
             key={item.id}
-            className="w-screen h-[60vh] flex flex-col items-center justify-around p-4 md:w-[50vw] lg:w-[33vw] xl:h-[90vh]  hover:bg-fuchsia-100 "
+            className="w-screen h-[60vh] flex flex-col items-center justify-around p-4 md:w-[50vw] lg:w-[33vw] xl:h-[90vh]  hover:bg-fuchsia-100"
           >
             {item.img && (
               <div className="relative flex-1 w-full hover:rotate-[60deg] hover:scale-105 transition-all duration-300 pt-4">
