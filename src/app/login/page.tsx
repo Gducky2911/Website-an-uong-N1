@@ -28,7 +28,7 @@ const LoginPage = () => {
           <p>Đăng nhập vào tài khoản của bạn hoặc tạo tài khoản mới</p>
           <button
             className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
-            onClick={() => signIn("github")}
+            onClick={() => signIn("google")}
             // onClick={() => signIn("facebook")}
           >
             <span>Đăng nhập</span>
