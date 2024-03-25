@@ -48,7 +48,7 @@ const CheckoutForm = (id: any) => {
       <button
         disabled={!stripe || !elements}
         type="submit"
-        className="bg-red-500 text-white p-4 rounded-md w-40 mt-8"
+        className="bg-red-500 text-white p-4 rounded-md w-40 mt-8 hover:bg-red-600"
       >
         Thanh toán
       </button>

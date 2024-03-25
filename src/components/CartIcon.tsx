@@ -1,7 +1,6 @@
 "use client";
 
 import { useCartStore } from "@/utils/store";
-import Image from "next/image";
 
 const CartIcon = () => {
   const { totalItems } = useCartStore();

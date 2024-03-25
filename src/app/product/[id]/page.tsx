@@ -22,7 +22,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-red-500 md:flex-row md:gap-8 md:items-center relative">
       {singleProduct.img && (
-        <div className="relative w-full h-1/2 md:h-[70%]">
+        <div className="relative w-full h-1/2 md:h-[70%] hover:rotate-[60deg] hover:scale-110 transition-all duration-300">
           <Image
             src={singleProduct.img}
             alt=""
@@ -31,7 +31,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           />
         </div>
       )}
-      <div className="h-1/2 flex flex-col gap-4 md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
+      <div className="lg:border-l-2 lg:border-red-500 lg:border-separate lg:pl-36 xl:pl-52 h-1/2 flex flex-col gap-4 md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
         <h1 className="text-3xl font-bold uppercase">
           <span>{singleProduct.title}</span>
         </h1>

@@ -11,7 +11,7 @@ const AddButton = () => {
   }
   return (
     <Link href="/add">
-      <button className="absolute mt-8 mr-2 right-0 bg-red-500 text-white p-2 rounded-xl hidden md:block">
+      <button className="absolute mt-8 mr-2 right-0 bg-red-500 hover:bg-red-600 text-white p-2 rounded-xl hidden md:block">
         Thêm mới
       </button>
     </Link>

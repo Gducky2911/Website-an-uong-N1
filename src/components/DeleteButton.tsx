@@ -32,10 +32,10 @@ const DeleteButton = ({ id }: { id: string }) => {
 
   return (
     <button
-      className="bg-red-400 text-white p-2 rounded-xl absolute top-4 right-4 hidden md:block"
+      className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-xl absolute top-4 right-4 hidden md:block"
       onClick={handleDelete}
     >
-      delete
+      Xóa sản phẩm
     </button>
   );
 };

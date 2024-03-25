@@ -32,13 +32,13 @@ const Price = ({ product }: { product: ProductType }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">{total}</h2>
+      <h2 className="text-2xl font-bold">{total} VNĐ</h2>
       <div className="flex gap-4">
         {product.options?.length &&
           product.options?.map((item, index) => (
             <button
               key={item.title}
-              className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md"
+              className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-xl"
               style={{
                 background: selected === index ? "rgb(248 113 113)" : "white",
                 color: selected === index ? "white" : "red",
@@ -51,23 +51,25 @@ const Price = ({ product }: { product: ProductType }) => {
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between w-full p-3 ring-1 ring-red-500">
-          <span>Số lượng</span>
+          <span className="font-bold">Số lượng</span>
           <div className="flex gap-4 items-center">
             <button
               onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+              className="hover:font-bold"
             >
               {"<"}
             </button>
-            <span>{quantity}</span>
+            <span className="font-bold">{quantity}</span>
             <button
               onClick={() => setQuantity((prev) => (prev < 9 ? prev + 1 : 0))}
+              className="hover:font-bold"
             >
               {">"}
             </button>
           </div>
         </div>
         <button
-          className="uppercase w-72 bg-red-500 text-white p-3 ring-1 ring-red-500"
+          className="uppercase w-72 bg-red-500 text-white p-3 ring-1 ring-red-500 hover:bg-red-600"
           onClick={handleCart}
         >
           Thêm vào giỏ
