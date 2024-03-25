@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import { OrderType } from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -49,7 +50,7 @@ const OrdersPage = () => {
     toast.success("The order status has been changed!");
   };
 
-  if (isLoading || status === "loading") return "Loading...";
+  if (isLoading || status === "loading") return <Loading />;
 
   return (
     <div className="p-4 lg:px-20 xl:px-40">

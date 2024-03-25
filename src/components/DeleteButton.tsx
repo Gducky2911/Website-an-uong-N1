@@ -3,13 +3,14 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Loading from "./Loading";
 
 const DeleteButton = ({ id }: { id: string }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (status === "unauthenticated" || !session?.user.isAdmin) {

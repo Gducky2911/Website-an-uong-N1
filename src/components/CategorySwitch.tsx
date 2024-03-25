@@ -15,7 +15,7 @@ const CategorySwitchPage = async () => {
   const menu: MenuType = await getData();
 
   return (
-    <div className="p-4 h-[200px] flex gap-8 justify-center flex-row items-center">
+    <div className="p-4 h-[200px] flex gap-8 justify-start flex-row items-center">
       {menu.map((item) => (
         <Link
           href={`/menu/${item.slug}`}
