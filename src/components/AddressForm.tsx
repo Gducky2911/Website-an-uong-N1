@@ -7,7 +7,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useState } from "react";
 
-const CheckoutForm = () => {
+const CheckoutForm = (id: any) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -15,9 +15,7 @@ const CheckoutForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    if (elements == null) {
-      return;
-    }
+    if (elements == null) return;
 
     const { error: submitError } = await elements.submit();
     if (submitError) {
@@ -25,7 +23,7 @@ const CheckoutForm = () => {
       return;
     }
 
-    const res = await fetch("/create-intent", {
+    const res = await fetch(`http://localhost:3000/api/create-intent/${id}`, {
       method: "POST",
     });
     const { client_secret: clientSecret } = await res.json();
@@ -38,10 +36,7 @@ const CheckoutForm = () => {
       },
     });
 
-    if (error) {
-      setErrorMessage(error.message);
-    } else {
-    }
+    if (error) setErrorMessage(error.message);
   };
 
   return (
@@ -70,7 +65,9 @@ const options = {
   mode: "payment",
   amount: 1099,
   currency: "usd",
-  appearance: {},
+  appearance: {
+    theme: "stripe",
+  },
 };
 
 const AddressForm = () => (
