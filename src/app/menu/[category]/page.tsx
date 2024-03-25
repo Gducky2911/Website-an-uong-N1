@@ -25,11 +25,11 @@ const CategoryPage = async ({ params }: Props) => {
 
   return (
     <>
-      {/* <CategorySwitchPage /> */}
+      <CategorySwitchPage />
       <div className="flex flex-wrap text-red-500 overflow-hidden pt-12">
         {products.map((item) => (
           <Link
-            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-4 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100"
+            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-r border-black"
             href={`/product/${item.id}`}
             key={item.id}
           >

@@ -17,19 +17,21 @@ const UserLinks = () => {
           </span>
           <Link
             href="/orders"
-            className="hover:font-bold text-blue-900 px-4 mr-2"
+            className="hover:underline text-blue-900 px-4 mr-2"
           >
             Đơn hàng
           </Link>
           <span
-            className="hover:font-bold px-4 mr-2 cursor-pointer"
+            className="hover:underline px-4 mr-2 cursor-pointer"
             onClick={() => signOut()}
           >
             Đăng xuất
           </span>
         </div>
       ) : (
-        <Link href="/login">Đăng nhập</Link>
+        <Link className="hover:underline" href="/login">
+          Đăng nhập
+        </Link>
       )}
     </div>
   );

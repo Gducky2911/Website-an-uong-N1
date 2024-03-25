@@ -39,7 +39,7 @@ const CartPage = () => {
 
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
-      <div className="h-1/2 p-4 flex flex-col justify-center overflow-y-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40">
+      <div className="h-1/2 p-4 flex flex-col justify-center overflow-y-hidden lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40">
         {products.map((item) => (
           <div
             className="flex items-center justify-between mb-4 border p-4 rounded-xl border-separate border-red-500 hover:bg-fuchsia-100"
