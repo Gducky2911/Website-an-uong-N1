@@ -25,7 +25,7 @@ const Menu = () => {
         <Image src="/close.png" alt="close" width={20} height={20} />
       )}
       {open && (
-        <div className="bg-red-500 text-white absolute left-0 top-24 h-screen z-1000 flex justify-center items-center text-lg flex-col gap-8 w-full py-8">
+        <div className="bg-red-500 text-white absolute z-50 left-0 top-24 h-screen flex justify-center items-center text-lg flex-col gap-8 w-full py-8">
           {links.map((link) => (
             <div key={link.id} className="text-center">
               <Link

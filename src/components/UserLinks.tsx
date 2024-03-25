@@ -12,20 +12,17 @@ const UserLinks = () => {
     <div>
       {data.status === "authenticated" ? (
         <div style={{ display: "flex", alignItems: "center" }}>
-          <span style={{ marginRight: "10px" }}>{data.data.user.name}</span>
+          <span className="font-bold px-4 mr-2 cursor-pointer">
+            {data.data.user.name}
+          </span>
           <Link
             href="/orders"
-            style={{
-              textDecoration: "none",
-              color: "blue",
-              marginLeft: "10px",
-            }}
+            className="hover:font-bold text-blue-900 px-4 mr-2"
           >
             Đơn hàng
           </Link>
           <span
-            className="ml-4 cursor-pointer"
-            style={{ textDecoration: "underline", cursor: "pointer" }}
+            className="hover:font-bold px-4 mr-2 cursor-pointer"
             onClick={() => signOut()}
           >
             Đăng xuất

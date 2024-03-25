@@ -16,7 +16,7 @@ const Offer = () => {
         </p>
         <CountDown />
         <Link href="/menu">
-          <button className="bg-red-500 text-white rounded-md py-3 px-6">
+          <button className="bg-red-500 hover:bg-red-600 text-white rounded-md py-3 px-6">
             Đặt hàng ngay
           </button>
         </Link>

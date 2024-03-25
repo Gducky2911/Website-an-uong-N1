@@ -41,7 +41,7 @@ const Slider = () => {
           {data[currentSlide].title}
         </h1>
         <Link href="/menu">
-          <button className="bg-red-500 text-white py-4 px-8">
+          <button className="bg-red-500 text-white py-4 px-8 hover:bg-red-600 rounded-xl">
             Đặt hàng ngay
           </button>
         </Link>
