@@ -17,7 +17,7 @@ const CheckoutForm = (id: any) => {
 
     if (elements == null) return;
 
-    const { error: submitError } = await elements.submit();
+    const { error: submitError }: any = await elements.submit();
     if (submitError) {
       setErrorMessage(submitError.message);
       return;
@@ -28,7 +28,7 @@ const CheckoutForm = (id: any) => {
     });
     const { client_secret: clientSecret } = await res.json();
 
-    const { error } = await stripe.confirmPayment({
+    const { error }: any = await stripe?.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
@@ -61,7 +61,7 @@ const stripePromise = loadStripe(
   "pk_test_51Oxi0VRvSGadRwV6GPbEHo6RHwbwcjhxczF9EPq95wtaOesjqVVo7Tpw703MGKZ9VsT1Jf6j55BYBneFtHYR8SZl00bKpCdO2W"
 );
 
-const options = {
+const options: any = {
   mode: "payment",
   amount: 1099,
   currency: "usd",
@@ -70,9 +70,9 @@ const options = {
   },
 };
 
-const AddressForm = () => (
+const AddressForm = (id: any) => (
   <Elements stripe={stripePromise} options={options}>
-    <CheckoutForm />
+    <CheckoutForm id={id} />
   </Elements>
 );
 
