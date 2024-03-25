@@ -87,7 +87,7 @@ const OrdersPage = () => {
                       placeholder={item.status}
                       className="p-2 ring-1 ring-red-100 rounded-md"
                     />
-                    <button className="bg-red-400 p-2 rounded-full">
+                    <button className="bg-red-400 p-2 rounded-xl text-white">
                       edit
                     </button>
                   </form>

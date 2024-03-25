@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const UserLinks = () => {
   const data = useSession();
-  const logo =
-    data.data?.user.image ||
-    "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png";
+  // const logo =
+  //   data.data?.user.image ||
+  //   "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png";
   return (
     <div>
       {data.status === "authenticated" ? (

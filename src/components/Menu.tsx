@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import CartIcon from "./CartIcon";
+import { useSession } from "next-auth/react";
 
 const links = [
   { id: 1, title: "Trang chủ", url: "/" },
@@ -14,7 +15,8 @@ const links = [
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(false);
+  const data = useSession();
+
   return (
     <div className="cursor-pointer" onClick={() => setOpen(!open)}>
       {!open ? (
@@ -36,7 +38,7 @@ const Menu = () => {
               </Link>
             </div>
           ))}
-          {!user ? (
+          {data.status !== "authenticated" ? (
             <Link
               href="/login"
               onClick={() => setOpen(false)}

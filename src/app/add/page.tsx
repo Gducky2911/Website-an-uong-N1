@@ -1,9 +1,9 @@
 "use client";
 
+import { MenuType } from "@/types/types";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Inputs = {
   title: string;
@@ -19,6 +19,7 @@ type Option = {
 
 const AddPage = () => {
   const { data: session, status } = useSession();
+  const [menu, setMenu] = useState<MenuType>([]);
   const [inputs, setInputs] = useState<Inputs>({
     title: "",
     desc: "",
@@ -36,6 +37,25 @@ const AddPage = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/categories", {
+          cache: "no-store",
+        });
+        if (!res.ok) {
+          throw new Error("Failed to fetch menu");
+        }
+        const data = await res.json();
+        setMenu(data);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      }
+    };
+
+    fetchMenu();
+  }, []);
+
   if (status === "loading") {
     return <p>Loading...</p>;
   }
@@ -51,7 +71,9 @@ const AddPage = () => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  const changeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeOption = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setOption((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -133,6 +155,7 @@ const AddPage = () => {
             placeholder="Bella Napoli"
             name="title"
             onChange={handleChange}
+            required={true}
           />
         </div>
         <div className="w-full flex flex-col gap-2">
@@ -143,6 +166,7 @@ const AddPage = () => {
             placeholder="Mô tả sản phẩm"
             name="desc"
             onChange={handleChange}
+            required={true}
           />
         </div>
         <div className="w-full flex flex-col gap-2 ">
@@ -152,7 +176,9 @@ const AddPage = () => {
             type="number"
             placeholder="29"
             name="price"
+            min={0}
             onChange={handleChange}
+            required={true}
           />
         </div>
         <div className="w-full flex flex-col gap-2 ">
@@ -163,24 +189,31 @@ const AddPage = () => {
             placeholder="pasta"
             name="catSlug"
             onChange={handleChange}
+            required={true}
           />
         </div>
         <div className="w-full flex flex-col gap-2">
           <label className="text-sm">Tùy chọn</label>
           <div className="flex">
-            <input
+            <select
               className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-gray-400 outline-none"
-              type="text"
-              placeholder="small"
               name="title"
               onChange={changeOption}
-            />
+            >
+              {menu.map((item, index) => (
+                <option key={index} value={item.title}>
+                  {item.title}
+                </option>
+              ))}
+            </select>
             <input
               className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-gray-400 outline-none"
               type="number"
               placeholder="Gía thêm"
               name="additionalPrice"
+              min={0}
               onChange={changeOption}
+              required={true}
             />
             <button
               className="bg-gray-500 p-2 text-white"

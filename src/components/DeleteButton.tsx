@@ -32,7 +32,7 @@ const DeleteButton = ({ id }: { id: string }) => {
 
   return (
     <button
-      className="bg-red-400 text-white p-2 rounded-xl absolute top-4 right-4"
+      className="bg-red-400 text-white p-2 rounded-xl absolute top-4 right-4 hidden md:block"
       onClick={handleDelete}
     >
       delete
