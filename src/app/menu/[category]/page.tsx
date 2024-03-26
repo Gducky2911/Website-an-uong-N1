@@ -3,19 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import CategorySwitchPage from "@/components/CategorySwitch";
 
-// const getData = async (category: string) => {
-//   const res = await fetch(
-//     `http://localhost:3000/api/products?cat=${category}`,
-//     {
-//       cache: "no-store",
-//     }
-//   );
-//   if (!res.ok) {
-//     throw new Error("Failed!");
-//   }
-//   return res.json();
-// };
-
 const getData = async () => {
   const res = await fetch(`http://localhost:3000/api/products/find-all`);
   if (!res.ok) {
@@ -33,7 +20,9 @@ const CategoryPage = async ({ params }: Props) => {
   const categoryData = productsData.find(
     (cat: any) => cat.slug === params.category
   );
-  const products = categoryData ? categoryData.items : [];
+  const products = categoryData
+    ? categoryData.items
+    : productsData.flatMap((cat: any) => cat.items);
 
   return (
     <div className="flex xl:flex-row flex-col">
