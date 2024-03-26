@@ -3,15 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import CategorySwitchPage from "@/components/CategorySwitch";
 
-const getData = async (category: string) => {
-  const res = await fetch(
-    `http://localhost:3000/api/products?cat=${category}`,
-    {
-      cache: "no-store",
-    }
-  );
+// const getData = async (category: string) => {
+//   const res = await fetch(
+//     `http://localhost:3000/api/products?cat=${category}`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
+//   if (!res.ok) {
+//     throw new Error("Failed!");
+//   }
+//   return res.json();
+// };
+
+const getData = async () => {
+  const res = await fetch(`http://localhost:3000/api/products/find-all`);
   if (!res.ok) {
-    throw new Error("Failed!");
+    throw new Error("Failed to fetch data!");
   }
   return res.json();
 };
@@ -21,15 +29,19 @@ type Props = {
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  const products: ProductType[] = await getData(params.category);
+  const productsData = await getData();
+  const categoryData = productsData.find(
+    (cat: any) => cat.slug === params.category
+  );
+  const products = categoryData ? categoryData.items : [];
 
   return (
-    <>
+    <div className="flex xl:flex-row flex-col">
       <CategorySwitchPage />
-      <div className="flex flex-wrap text-red-500 overflow-hidden pt-12">
-        {products.map((item) => (
+      <div className="flex flex-7 flex-wrap w-full text-red-500 min-h-screen overflow-hidden">
+        {products.map((item: any) => (
           <Link
-            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-r border-black"
+            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-l"
             href={`/product/${item.id}`}
             key={item.id}
           >
@@ -53,7 +65,7 @@ const CategoryPage = async ({ params }: Props) => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

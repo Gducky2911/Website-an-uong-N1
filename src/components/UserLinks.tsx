@@ -12,7 +12,7 @@ const UserLinks = () => {
     <div>
       {data.status === "authenticated" ? (
         <div style={{ display: "flex", alignItems: "center" }}>
-          <span className="font-bold px-4 mr-2 cursor-pointer">
+          <span className="font-bold hidden lg:block px-4 mr-2 cursor-pointer">
             {data.data.user.name}
           </span>
           <Link

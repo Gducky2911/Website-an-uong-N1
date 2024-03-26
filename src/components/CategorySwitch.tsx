@@ -15,15 +15,21 @@ const CategorySwitchPage = async () => {
   const menu: MenuType = await getData();
 
   return (
-    <div className="p-4 h-[200px] flex gap-8 justify-start flex-row items-center">
+    <div className="p-8 py-12 h-[200px] gap-4 justify-start flex-3 xl:flex-col flex-row md:flex hidden items-center">
+      <Link
+        href={`/menu/find-all`}
+        className="p-2 w-[120px] rounded-3xl border-black border hover:bg-fuchsia-200 text-center"
+      >
+        <h1 className="uppercase font-bold text-md text-black">Tất cả</h1>
+      </Link>
       {menu.map((item) => (
         <Link
           href={`/menu/${item.slug}`}
           key={item.id}
-          className="p-4 w-[250px] rounded-3xl border-black border hover:bg-fuchsia-100"
+          className="p-2 w-[120px] rounded-3xl border-black border hover:bg-fuchsia-200"
         >
-          <div className={`text-${item.color} w-1/2 text-center`}>
-            <h1 className="uppercase font-bold text-xl text-black">
+          <div className={`text-${item.color} w-full text-center`}>
+            <h1 className="uppercase font-bold text-md text-black">
               {item.title}
             </h1>
           </div>

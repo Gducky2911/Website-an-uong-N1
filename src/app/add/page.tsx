@@ -151,6 +151,8 @@ const AddPage = () => {
             onChange={handleChangeImg}
             id="file"
             className="text-sm"
+            name="img"
+            key="img"
           />
         </div>
         <div className="w-full flex flex-col gap-2 ">
@@ -160,6 +162,7 @@ const AddPage = () => {
             type="text"
             placeholder="Bella Napoli"
             name="title"
+            key="title"
             onChange={handleChange}
             required={true}
           />
@@ -171,6 +174,7 @@ const AddPage = () => {
             className="ring-1 ring-red-200 p-4 rounded-xl outline-none"
             placeholder="Mô tả sản phẩm"
             name="desc"
+            key="desc"
             onChange={handleChange}
             required={true}
           />
@@ -182,6 +186,7 @@ const AddPage = () => {
               className="ring-1 ring-red-200 p-4 rounded-xl outline-none"
               type="number"
               placeholder="29000 VNĐ"
+              key="price"
               name="price"
               min={0}
               step={1000}
@@ -193,6 +198,7 @@ const AddPage = () => {
             <label className="text-md">Menu</label>
             <select
               className="ring-1 ring-red-200 p-4 rounded-xl outline-none"
+              key="catSlug"
               name="catSlug"
               onChange={handleChange}
             >
@@ -209,6 +215,7 @@ const AddPage = () => {
           <div className="flex">
             <select
               className="ring-1 ring-red-200 p-4 outline-none mr-2 rounded-xl"
+              key="options.title"
               name="title"
               onChange={changeOption}
             >
@@ -220,6 +227,7 @@ const AddPage = () => {
               className="ring-1 ring-red-200 p-4 outline-none rounded-l-xl"
               type="number"
               placeholder="Gía thêm"
+              key="options.additionalPrice"
               name="additionalPrice"
               min={0}
               onChange={changeOption}
