@@ -1,4 +1,3 @@
-"use client";
 import AddButton from "@/components/AddButton";
 import { MenuType } from "@/types/types";
 import Link from "next/link";
@@ -19,6 +18,9 @@ const MenuPage = async () => {
   return (
     <>
       <AddButton />
+      <span className="hidden lg:flex justify-center items-center pt-12 underline cursor-pointer hover:font-bold">
+        <Link href={`/menu/find-all`}>Tất cả sản phẩm</Link>
+      </span>
       <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col gap-8 md:flex-row items-center">
         {menu.map((item) => (
           <Link

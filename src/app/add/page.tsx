@@ -211,6 +211,9 @@ const AddPage = () => {
               name="catSlug"
               onChange={handleChange}
             >
+              <option disabled selected hidden>
+                Chọn menu
+              </option>
               {menu.map((item, index) => (
                 <option key={index} value={item.slug}>
                   {item.title}
@@ -228,6 +231,9 @@ const AddPage = () => {
               name="title"
               onChange={changeOption}
             >
+              <option disabled selected hidden>
+                Chọn kích thước
+              </option>
               <option>Nhỏ</option>
               <option>Vừa</option>
               <option>Lớn</option>
@@ -243,6 +249,7 @@ const AddPage = () => {
               required={true}
             />
             <button
+              type="button"
               className="bg-red-500 hover:bg-red-600 p-2 text-white rounded-r-xl"
               onClick={() => setOptions((prev) => [...prev, option])}
             >
