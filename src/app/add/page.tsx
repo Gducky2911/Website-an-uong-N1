@@ -126,22 +126,13 @@ const AddPage = () => {
     try {
       const url = await upload();
 
-      const requestBody = {
-        img: url,
-        ...inputs,
-        options,
-      };
-
       const res = await fetch("http://localhost:3000/api/products", {
         method: "POST",
-        body: JSON.stringify(requestBody),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ img: url, ...inputs, options }),
       });
 
       const data = await res.json();
-
       router.push(`/product/${data.id}`);
     } catch (err) {
       console.log(err);
@@ -221,7 +212,7 @@ const AddPage = () => {
               onChange={handleChange}
             >
               {menu.map((item, index) => (
-                <option key={index} value={item.title}>
+                <option key={index} value={item.slug}>
                   {item.title}
                 </option>
               ))}
