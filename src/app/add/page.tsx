@@ -89,23 +89,35 @@ const AddPage = () => {
   };
 
   const upload = async () => {
-    const formData = new FormData();
-    formData.append("file", file!);
-    formData.append(
-      "fileName",
-      (Math.random() * 111111111111111111111111).toString()
-    );
-    const res = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization:
-          "Basic cHJpdmF0ZV9XVEJvUWJseXI2L1IyTllNUGVGNVhNNmZwVE09Og==",
-      },
-    });
+    try {
+      const formData = new FormData();
+      formData.append("file", file!);
+      formData.append(
+        "fileName",
+        (Math.random() * 111111111111111111111111).toString()
+      );
+      const res = await fetch(
+        "https://upload.imagekit.io/api/v1/files/upload",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization:
+              "Basic cHJpdmF0ZV9XVEJvUWJseXI2L1IyTllNUGVGNVhNNmZwVE09Og==",
+          },
+        }
+      );
 
-    const resData = await res.json();
-    return resData.url;
+      if (!res.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const resData = await res.json();
+      return resData.url;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -113,13 +125,19 @@ const AddPage = () => {
 
     try {
       const url = await upload();
+
+      const requestBody = {
+        img: url,
+        ...inputs,
+        options,
+      };
+
       const res = await fetch("http://localhost:3000/api/products", {
         method: "POST",
-        body: JSON.stringify({
-          img: url,
-          ...inputs,
-          options,
-        }),
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       const data = await res.json();
