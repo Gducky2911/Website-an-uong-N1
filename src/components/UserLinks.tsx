@@ -5,31 +5,31 @@ import Link from "next/link";
 
 const UserLinks = () => {
   const data = useSession();
-  // const logo =
-  //   data.data?.user.image ||
-  //   "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png";
   return (
-    <div>
+    <div className="flex items-center">
       {data.status === "authenticated" ? (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span className="font-bold hidden lg:block px-4 mr-2 cursor-pointer">
+        <div className="flex items-center">
+          <span className="font-bold hidden lg:block px-2 mr-2 cursor-pointer text-blue-900">
             {data.data.user.name}
           </span>
           <Link
             href="/orders"
-            className="hover:underline text-blue-900 px-4 mr-2"
+            className="hover:text-blue-900 hover:underline px-2 mr-2"
           >
             Đơn hàng
           </Link>
           <span
-            className="hover:underline px-4 mr-2 cursor-pointer"
+            className="hover:text-blue-900 hover:underline px-2 mr-2 cursor-pointer"
             onClick={() => signOut()}
           >
             Đăng xuất
           </span>
         </div>
       ) : (
-        <Link className="hover:underline" href="/login">
+        <Link
+          href="/login"
+          className="hover:text-blue-900 hover:underline mr-2 cursor-pointer"
+        >
           Đăng nhập
         </Link>
       )}

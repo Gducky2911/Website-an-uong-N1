@@ -4,35 +4,47 @@ import Menu from "./Menu";
 import CartIcon from "./CartIcon";
 import Image from "next/image";
 import UserLinks from "./UserLinks";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const data = useSession();
+
   return (
-    <div className="h-12 md:h-24 text-red-500 p-4 flex items-center justify-between border-b-2 border-b-red-500 uppercase">
-      <div className="hidden md:flex">
-        <Link className="hover:underline px-4 mr-2" href="/">
-          Trang chủ
-        </Link>
-        <Link className="hover:underline px-4 mr-2" href="/menu">
-          Thực đơn
-        </Link>
-        <Link className="hover:underline px-4 mr-2" href="/">
-          Giới thiệu
-        </Link>
-        <Link className="hover:underline px-4 mr-2" href="/">
-          Liên hệ
-        </Link>
-      </div>
-      <div className="text-3xl font-bold">
-        <Link href="/">PIZZA PTIT</Link>
-      </div>
-      <div className="md:hidden">
-        <Menu />
-      </div>
-      <div className="hidden md:flex items-center">
-        <UserLinks />
-        <Link className="hover:underline px-4" href="/cart">
-          <CartIcon />
-        </Link>
+    <div className=" border-b-2 border-red-500 py-3 bg-red-100">
+      <div className="container mx-auto flex items-center justify-between px-4 ">
+        <div className="hidden md:flex text-sm space-x-4">
+          <Link href="/" className="nav-link">
+            Trang chủ
+          </Link>
+          <Link href="/menu" className="nav-link">
+            Thực đơn
+          </Link>
+          {data.data?.user.isAdmin && (
+            <Link href="/add" className="nav-link">
+              Thêm thực đơn
+            </Link>
+          )}
+          <Link href="/" className="nav-link">
+            Giới thiệu
+          </Link>
+          <Link href="/" className="nav-link">
+            Liên hệ
+          </Link>
+        </div>
+        <div className="text-xl font-bold">
+          <Link href="/" className="nav-link">
+            FOOD PTIT
+          </Link>
+        </div>
+        <div className="md:hidden">
+          <Menu />
+        </div>
+        <div className="hidden md:flex items-center">
+          <UserLinks />
+          <Link href="/cart" className="nav-link">
+            <CartIcon />
+          </Link>
+        </div>
       </div>
     </div>
   );
