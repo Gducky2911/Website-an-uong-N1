@@ -1,34 +1,49 @@
-import { ProductType } from "@/types/types";
-import Image from "next/image";
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+
 import CategorySwitchPage from "@/components/CategorySwitch";
+interface product {
+  id: any;
+  img: any;
+  title: any;
+  price: any;
+}
+const CategoryPage = () => {
+  const router = usePathname();
+  console.log(router);
+  const categories = router.split("/");
+  const category = categories[categories.length - 1];
+  const [products, setProducts] = useState([]);
 
-const getData = async () => {
-  const res = await fetch(`http://localhost:3000/api/products/find-all`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data!");
-  }
-  return res.json();
-};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/products/find-all");
+        if (!res.ok) {
+          throw new Error("Failed to fetch data!");
+        }
+        const data = await res.json();
+        const categoryData = data.find((cat: any) => cat.slug === category);
+        const items = categoryData
+          ? categoryData.items
+          : data.flatMap((cat: any) => cat.items);
+        setProducts(items);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-type Props = {
-  params: { category: string };
-};
-
-const CategoryPage = async ({ params }: Props) => {
-  const productsData = await getData();
-  const categoryData = productsData.find(
-    (cat: any) => cat.slug === params.category
-  );
-  const products = categoryData
-    ? categoryData.items
-    : productsData.flatMap((cat: any) => cat.items);
+    fetchData();
+  }, [category]);
 
   return (
     <div className="flex xl:flex-row flex-col">
       <CategorySwitchPage />
       <div className="flex flex-7 flex-wrap w-full text-red-500 min-h-screen overflow-hidden">
-        {products.map((item: any) => (
+        {products.map((item: product) => (
           <Link
             className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-l"
             href={`/product/${item.id}`}
