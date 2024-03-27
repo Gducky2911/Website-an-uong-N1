@@ -1,18 +1,28 @@
+import { useEffect, useState } from "react";
 import { MenuType } from "@/types/types";
 import Link from "next/link";
 
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    throw new Error("Failed!");
-  }
-  return res.json();
-};
+const CategorySwitchPage = () => {
+  const [menu, setMenu] = useState<MenuType>([]);
 
-const CategorySwitchPage = async () => {
-  const menu: MenuType = await getData();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/categories", {
+          cache: "no-store",
+        });
+        if (!res.ok) {
+          throw new Error("Failed!");
+        }
+        const data = await res.json();
+        setMenu(data);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="p-8 py-12 h-[200px] gap-4 justify-start flex-3 xl:flex-col flex-row md:flex hidden items-center">

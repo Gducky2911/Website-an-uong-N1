@@ -1,3 +1,4 @@
+"use client";
 import AddButton from "@/components/AddButton";
 import { MenuType } from "@/types/types";
 import Link from "next/link";
