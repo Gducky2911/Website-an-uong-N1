@@ -9,14 +9,17 @@ import { useSession } from "next-auth/react";
 const links = [
   { id: 1, title: "Trang chủ", url: "/" },
   { id: 2, title: "Thực đơn", url: "/menu" },
-  { id: 3, title: "Giới thiệu", url: "/" },
-  { id: 4, title: "Liên hệ", url: "/" },
+  { id: 3, title: "Thêm thực đơn", url: "/add" },
+  { id: 4, title: "Giới thiệu", url: "" },
+  { id: 5, title: "Liên hệ", url: "/" },
 ];
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const data = useSession();
-
+  if (data?.data?.user.isAdmin == false) {
+    links.splice(2, 1);
+  }
   return (
     <div className="cursor-pointer" onClick={() => setOpen(!open)}>
       {!open ? (

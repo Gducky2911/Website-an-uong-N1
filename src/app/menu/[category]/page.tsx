@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-
 import CategorySwitchPage from "@/components/CategorySwitch";
-interface product {
+
+interface Product {
   id: any;
   img: any;
   title: any;
   price: any;
 }
+
 const CategoryPage = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const router = usePathname();
-  console.log(router);
   const categories = router.split("/");
   const category = categories[categories.length - 1];
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,11 +43,11 @@ const CategoryPage = () => {
     <div className="flex xl:flex-row flex-col">
       <CategorySwitchPage />
       <div className="flex flex-7 flex-wrap w-full text-red-500 min-h-screen overflow-hidden">
-        {products.map((item: product) => (
+        {products.map((item: Product) => (
           <Link
-            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-l"
             href={`/product/${item.id}`}
             key={item.id}
+            className="w-full h-[60vh] sm:w-1/2 lg:w-1/3 p-8 flex flex-col justify-between group odd:bg-fuchsia-50 hover:bg-fuchsia-100 border-b border-l"
           >
             {item.img && (
               <div className="relative h-[80%] hover:rotate-[60deg] hover:scale-110 transition-all duration-300">
