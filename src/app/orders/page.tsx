@@ -40,6 +40,20 @@ const OrdersPage = () => {
     },
   });
 
+  const remove = useMutation({
+    mutationFn: ({ id }: { id: string }) => {
+      return fetch(`http://localhost:3000/api/orders/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+    },
+  });
+
   const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: string) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -48,6 +62,11 @@ const OrdersPage = () => {
 
     mutation.mutate({ id, status });
     toast.success("The order status has been changed!");
+  };
+
+  const handleDelete = (id: string) => {
+    remove.mutate({ id });
+    toast.success("The order has been removed!");
   };
 
   if (isLoading || status === "loading") return <Loading />;
@@ -88,8 +107,18 @@ const OrdersPage = () => {
                       placeholder={item.status}
                       className="p-2 ring-1 ring-red-100 rounded-md"
                     />
-                    <button className="bg-red-400 p-2 rounded-xl text-white">
-                      edit
+                    <button
+                      type="submit"
+                      className="bg-red-400 p-2 rounded-xl text-white"
+                    >
+                      Chỉnh sửa
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(item.id)}
+                      className="bg-red-400 p-2 rounded-xl text-white"
+                    >
+                      Xóa
                     </button>
                   </form>
                 </td>
