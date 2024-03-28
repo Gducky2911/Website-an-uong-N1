@@ -41,7 +41,7 @@ const AddPage = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/categories`, {
+        const res = await fetch(`${process.env.URL_BACKEND}/api/categories`, {
           cache: "no-store",
         });
         if (!res.ok) {
@@ -126,7 +126,7 @@ const AddPage = () => {
     try {
       const url = await upload();
 
-      const res = await fetch(`http://localhost:3000/api/products`, {
+      const res = await fetch(`${process.env.URL_BACKEND}/api/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ img: url, ...inputs, options }),
