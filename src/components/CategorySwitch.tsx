@@ -9,7 +9,7 @@ const CategorySwitchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/categories", {
+        const res = await fetch(`http://localhost:3000/api/categories`, {
           cache: "no-store",
         });
         if (!res.ok) {
@@ -26,18 +26,22 @@ const CategorySwitchPage = () => {
   }, []);
 
   return (
-    <div className="p-8 py-12 h-[200px] gap-4 justify-start flex-3 xl:flex-col flex-row md:flex hidden items-center">
-      <Link href={`/menu/find-all`} className="nav-link">
+    <div className="p-4 py-12 h-[200px] min-w-[150px] gap-4 justify-start flex-3 xl:flex-col flex-row md:flex hidden items-center">
+      <Link href={`/menu/find-all`} className="nav-link w-full">
         {/* <div className="text-center py-2 px-4 rounded-md transition duration-300 ease-in-out"> */}
-        <h1 className="uppercase font-bold text-md text-black hover:bg-red-300 text-center py-2 px-4 rounded-md transition duration-300 ease-in-out">
+        <h1 className="uppercase font-bold text-md text-black hover:bg-red-500 text-center p-2 rounded-md transition duration-300 ease-in-out">
           Tất cả
         </h1>
         {/* </div> */}
       </Link>
       {menu.map((item) => (
-        <Link href={`/menu/${item.slug}`} key={item.id} className="nav-link">
+        <Link
+          href={`/menu/${item.slug}`}
+          key={item.id}
+          className="nav-link w-full"
+        >
           <div
-            className={`hover:bg-red-300 text-center py-2 px-4 rounded-md transition duration-300 ease-in-out`}
+            className={`hover:bg-red-500 text-center p-2 rounded-md transition duration-300 ease-in-out`}
           >
             <h1 className="uppercase font-bold text-md text-black">
               {item.title}

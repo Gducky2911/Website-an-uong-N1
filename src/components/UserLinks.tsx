@@ -12,24 +12,18 @@ const UserLinks = () => {
           <span className="font-bold hidden lg:block px-2 mr-2 cursor-pointer text-blue-900">
             {data.data.user.name}
           </span>
-          <Link
-            href="/orders"
-            className="hover:text-blue-900 hover:underline px-2 mr-2"
-          >
+          <Link href="/orders" className="hover:text-blue-900 px-2 mr-2">
             Đơn hàng
           </Link>
           <span
-            className="hover:text-blue-900 hover:underline px-2 mr-2 cursor-pointer"
+            className="hover:text-blue-900 px-2 mr-2 cursor-pointer"
             onClick={() => signOut()}
           >
             Đăng xuất
           </span>
         </div>
       ) : (
-        <Link
-          href="/login"
-          className="hover:text-blue-900 hover:underline mr-2 cursor-pointer"
-        >
+        <Link href="/login" className="hover:text-blue-900 mr-2 cursor-pointer">
           Đăng nhập
         </Link>
       )}

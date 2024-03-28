@@ -12,27 +12,27 @@ const Navbar = () => {
   return (
     <div className=" border-b-2 border-red-500 py-3 bg-red-100">
       <div className="container mx-auto flex items-center justify-between px-4 ">
-        <div className="hidden md:flex text-sm space-x-4">
-          <Link href="/" className="nav-link">
+        <div className="hidden md:flex space-x-4">
+          <Link href="/" className="nav-link hover:text-red-500">
             Trang chủ
           </Link>
-          <Link href="/menu" className="nav-link">
+          <Link href="/menu" className="nav-link hover:text-red-500">
             Thực đơn
           </Link>
           {data.data?.user.isAdmin && (
-            <Link href="/add" className="nav-link">
+            <Link href="/add" className="nav-link hover:text-red-500">
               Thêm thực đơn
             </Link>
           )}
-          <Link href="/" className="nav-link">
+          <Link href="/" className="nav-link hover:text-red-500">
             Giới thiệu
           </Link>
-          <Link href="/" className="nav-link">
+          <Link href="/" className="nav-link hover:text-red-500">
             Liên hệ
           </Link>
         </div>
         <div className="text-xl font-bold">
-          <Link href="/" className="nav-link">
+          <Link href="/" className="nav-link text-red-500 font-bold">
             FOOD PTIT
           </Link>
         </div>

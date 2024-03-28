@@ -3,7 +3,7 @@ import { MenuType } from "@/types/types";
 import Link from "next/link";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
+  const res = await fetch(`http://localhost:3000/api/categories`, {
     cache: "no-store",
   });
   if (!res.ok) {
@@ -17,7 +17,7 @@ const MenuPage = async () => {
 
   return (
     <>
-      <AddButton />
+      {/* <AddButton /> */}
       <span className="hidden lg:flex justify-center items-center pt-12 underline cursor-pointer hover:font-bold">
         <Link href={`/menu/find-all`}>Tất cả sản phẩm</Link>
       </span>
