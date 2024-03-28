@@ -72,15 +72,15 @@ const OrdersPage = () => {
   if (isLoading || status === "loading") return <Loading />;
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40">
+    <div className="p-4 lg:px-20 xl:px-40 min-h-[calc(100vh-6rem)]">
       <table className="w-full border-separate border-spacing-3">
         <thead>
           <tr className="text-left">
-            <th className="hidden md:block">Order ID</th>
-            <th>Date</th>
-            <th>Price</th>
-            <th className="hidden md:block">Products</th>
-            <th>Status</th>
+            <th className="hidden md:block">Mã đơn hàng</th>
+            <th>Ngày tạo đơn</th>
+            <th>Gía</th>
+            <th className="hidden md:block">Sản phẩm</th>
+            <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
@@ -93,7 +93,7 @@ const OrdersPage = () => {
               <td className="py-6 px-1">
                 {item.createdAt.toString().slice(0, 10)}
               </td>
-              <td className="py-6 px-1">{item.price}</td>
+              <td className="py-6 px-1">{item.price} VNĐ</td>
               <td className="hidden md:block py-6 px-1">
                 {item.products[0].title}
               </td>
@@ -109,14 +109,14 @@ const OrdersPage = () => {
                     />
                     <button
                       type="submit"
-                      className="bg-red-400 p-2 rounded-xl text-white"
+                      className="bg-red-400 hover:bg-red-500 p-2 rounded-xl text-white"
                     >
                       Chỉnh sửa
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(item.id)}
-                      className="bg-red-400 p-2 rounded-xl text-white"
+                      className="bg-red-400 hover:bg-red-500 p-2 rounded-xl text-white"
                     >
                       Xóa
                     </button>
