@@ -41,7 +41,7 @@ const AddPage = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await fetch(`${process.env.URL_BACKEND}/api/categories`, {
+        const res = await fetch(`/api/categories`, {
           cache: "no-store",
         });
         if (!res.ok) {

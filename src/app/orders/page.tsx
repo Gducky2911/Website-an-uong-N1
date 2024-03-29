@@ -19,15 +19,14 @@ const OrdersPage = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
-    queryFn: () =>
-      fetch(`${process.env.URL_BACKEND}/api/orders`).then((res) => res.json()),
+    queryFn: () => fetch(`/api/orders`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`${process.env.URL_BACKEND}/api/orders/${id}`, {
+      return fetch(`/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +41,7 @@ const OrdersPage = () => {
 
   const remove = useMutation({
     mutationFn: ({ id }: { id: string }) => {
-      return fetch(`${process.env.URL_BACKEND}/api/orders/${id}`, {
+      return fetch(`/api/orders/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
