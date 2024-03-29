@@ -9,7 +9,7 @@ const CategorySwitchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/categories`, {
+        const res = await fetch(`${process.env.URL_BACKEND}/api/categories`, {
           cache: "no-store",
         });
         if (!res.ok) {

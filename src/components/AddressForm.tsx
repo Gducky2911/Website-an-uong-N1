@@ -23,16 +23,19 @@ const CheckoutForm = (id: any) => {
       return;
     }
 
-    const res = await fetch(`http://localhost:3000/api/create-intent/${id}`, {
-      method: "POST",
-    });
+    const res = await fetch(
+      `${process.env.URL_BACKEND}/api/create-intent/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const { client_secret: clientSecret } = await res.json();
 
     const { error }: any = await stripe?.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3000/success`,
+        return_url: `${process.env.URL_BACKEND}/success`,
       },
     });
 
