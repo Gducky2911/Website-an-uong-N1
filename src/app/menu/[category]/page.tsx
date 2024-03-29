@@ -21,9 +21,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `${process.env.URL_BACKEND}/api/products/find-all`
-        );
+        const res = await fetch(`/api/products/find-all`);
         if (!res.ok) {
           throw new Error("Failed to fetch data!");
         }
