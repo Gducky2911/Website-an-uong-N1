@@ -30,7 +30,11 @@ export default function RootLayout({
               <Navbar />
               {children}
               <Footer />
-              {/* <ToastContainer position="bottom-right" theme="dark" autoClose={3000}/> */}
+              {/* <ToastContainer
+                position="bottom-right"
+                theme="dark"
+                autoClose={3000}
+              /> */}
             </div>
           </QueryProvider>
         </AuthProvider>

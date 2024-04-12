@@ -5,8 +5,15 @@ import { useCartStore } from "@/utils/store";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+interface OptionWithPrice {
+  title: string;
+  additionalPrice: number;
+}
+
 const Price = ({ product }: { product: ProductType }) => {
-  const [total, setTotal] = useState(product.price);
+  const optionsWithPrice = product.options as OptionWithPrice[];
+
+  const [total, setTotal] = useState<number>(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
@@ -18,17 +25,29 @@ const Price = ({ product }: { product: ProductType }) => {
       title: product.title,
       img: product.img,
       price: total,
-      ...(product.options?.length && {
-        optionTitle: product.options[selected].title,
+      ...(optionsWithPrice.length && {
+        optionTitle: optionsWithPrice[selected].title,
       }),
       quantity: quantity,
     });
-    toast.success("The product added to the cart!");
+    // toast.success("The product added to the cart!");
   };
 
   useEffect(() => {
-    setTotal(quantity * product.price);
-  }, [quantity, selected, product]);
+    const selectedOption = optionsWithPrice[selected];
+    if (selectedOption) {
+      const basePrice =
+        typeof product.price === "string"
+          ? parseFloat(product.price)
+          : product.price;
+      const additionalPrice =
+        typeof selectedOption.additionalPrice === "string"
+          ? parseFloat(selectedOption.additionalPrice)
+          : selectedOption.additionalPrice;
+      const totalPrice = basePrice + additionalPrice;
+      setTotal(quantity * totalPrice);
+    }
+  }, [quantity, selected, product, optionsWithPrice]);
 
   return (
     <div className="flex flex-col gap-4">

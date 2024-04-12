@@ -39,6 +39,7 @@ export type CartType = {
   products: CartItemType[];
   totalItems: number;
   totalPrice: number;
+  removingItems: boolean;
 };
 
 export type ActionTypes = {

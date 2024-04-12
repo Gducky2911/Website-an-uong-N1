@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   products: [],
   totalItems: 0,
   totalPrice: 0,
+  removingItems: false,
 };
 
 export const useCartStore = create(
@@ -14,6 +15,7 @@ export const useCartStore = create(
       products: INITIAL_STATE.products,
       totalItems: INITIAL_STATE.totalItems,
       totalPrice: INITIAL_STATE.totalPrice,
+      removingItems: INITIAL_STATE.removingItems,
       addToCart(item) {
         const products = get().products;
         const productInState = products.find(
@@ -44,11 +46,13 @@ export const useCartStore = create(
         }
       },
       removeFromCart(item) {
+        set({ removingItems: true });
         set((state) => ({
           products: state.products.filter((product) => product.id !== item.id),
           totalItems: state.totalItems - item.quantity,
           totalPrice: state.totalPrice - item.price,
         }));
+        set({ removingItems: false });
       },
     }),
     { name: "cart", skipHydration: true }

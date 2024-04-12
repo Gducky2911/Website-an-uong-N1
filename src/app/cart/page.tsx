@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const CartPage = () => {
-  const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
+  const { products, totalItems, totalPrice, removingItems, removeFromCart } =
+    useCartStore();
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -25,7 +26,7 @@ const CartPage = () => {
           body: JSON.stringify({
             price: totalPrice,
             products,
-            status: "Not Paid!",
+            status: "Chưa thanh toán!",
             userEmail: session.user.email,
           }),
         });
@@ -38,7 +39,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)] flex flex-col text-red-500 lg:flex-row">
+    <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
       <div className="h-1/2 p-4 flex flex-col justify-center overflow-y-hidden lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40">
         {products.map((item) => (
           <div
@@ -57,14 +58,14 @@ const CartPage = () => {
             <h2 className="font-bold">{item.price} VNĐ</h2>
             <span
               className="cursor-pointer hover:font-bold"
-              onClick={() => removeFromCart(item)}
+              onClick={() => !removingItems && removeFromCart(item)}
             >
               X
             </span>
           </div>
         ))}
       </div>
-      <div className="h-1/2 p-4 bg-fuchsia-100 flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-40 2xl:text-xl 2xl:gap-6">
+      <div className="h-1/2 p-4 bg-fuchsia-100 flex flex-col gap-4 justify-center lg:h-full lg:w-1/2 lg:px-10 xl:px-40 2xl:text-xl 2xl:gap-6">
         <div className="flex justify-between">
           <span className="font-bold">Tổng cộng ({totalItems} sản phẩm)</span>
           <span className="">{totalPrice} VNĐ</span>

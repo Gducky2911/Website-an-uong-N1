@@ -5,6 +5,7 @@ import { MenuType } from "@/types/types";
 
 const CategorySwitchPage = () => {
   const [menu, setMenu] = useState<MenuType>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

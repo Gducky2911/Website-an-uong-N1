@@ -5,13 +5,15 @@ import { OrderType } from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const OrdersPage = () => {
   const { data: session, status } = useSession();
 
   const router = useRouter();
+
+  const [value, setValue] = useState('')
 
   if (status === "unauthenticated") {
     router.push("/");
@@ -60,12 +62,12 @@ const OrdersPage = () => {
     const status = input.value;
 
     mutation.mutate({ id, status });
-    toast.success("The order status has been changed!");
+    // toast.success("The order status has been changed!");
   };
 
   const handleDelete = (id: string) => {
     remove.mutate({ id });
-    toast.success("The order has been removed!");
+    // toast.success("The order has been removed!");
   };
 
   if (isLoading || status === "loading") return <Loading />;
@@ -77,7 +79,7 @@ const OrdersPage = () => {
           <tr className="text-left">
             <th className="hidden md:block">Mã đơn hàng</th>
             <th>Ngày tạo đơn</th>
-            <th>Gía</th>
+            <th>Giá</th>
             <th className="hidden md:block">Sản phẩm</th>
             <th>Trạng thái</th>
           </tr>
@@ -92,7 +94,7 @@ const OrdersPage = () => {
               <td className="py-6 px-1">
                 {item.createdAt.toString().slice(0, 10)}
               </td>
-              <td className="py-6 px-1">{item.price} VNĐ</td>
+              <td className="py-6 px-1">{item.price}</td>
               <td className="hidden md:block py-6 px-1">
                 {item.products[0].title}
               </td>
@@ -102,20 +104,29 @@ const OrdersPage = () => {
                     className="flex items-center justify-center gap-4"
                     onSubmit={(e) => handleUpdate(e, item.id)}
                   >
-                    <input
+                    {/* <input
                       placeholder={item.status}
                       className="p-2 ring-1 ring-red-100 rounded-md"
-                    />
+                    /> */}
+                    <select
+                      className="p-2 ring-1 ring-red-100 rounded-md"
+                      // defaultValue={item.status}
+                      // value={value}
+                      onChange={(key: any) => setValue(key)}
+                    >
+                      <option value="not-paid">Chưa thanh toán</option>
+                      <option value="paid">Đã thanh toán</option>
+                    </select>
                     <button
                       type="submit"
-                      className="bg-red-400 hover:bg-red-500 p-2 rounded-xl text-white"
+                      className="bg-red-400 p-2 rounded-xl text-white"
                     >
                       Chỉnh sửa
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(item.id)}
-                      className="bg-red-400 hover:bg-red-500 p-2 rounded-xl text-white"
+                      className="bg-red-400 p-2 rounded-xl text-white"
                     >
                       Xóa
                     </button>

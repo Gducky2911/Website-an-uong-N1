@@ -49,7 +49,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="text-center lg:text-start">
+          <div className="text-center lg:text-start lg:block hidden">
             <div className="flex items-center md:col-span-2">
               <h2 className="text-lg font-semibold text-gray-800 mr-4">
                 THEO DÕI CHÚNG TÔI TRÊN
